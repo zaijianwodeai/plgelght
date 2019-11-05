@@ -36,5 +36,5 @@
     "less-loader": "^5.0.0",
     "react-app-rewired": "^2.1.4"
   },
-  "proxy" : "https://m.zbj.com"
+  "proxy": "https://m.zbj.com"
 }

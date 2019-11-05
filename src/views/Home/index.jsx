@@ -1,13 +1,13 @@
 import React from 'react'
 
-class Case extends React.Component{
+class Iendex extends React.Component{
   render() {
     return(
       <div>
-        <h1>案例</h1>
+        <h1>首页</h1>
       </div>
     )
   }
 }
 
-export default Case
+export default Iendex

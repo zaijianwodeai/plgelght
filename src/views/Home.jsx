@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Switch, Route, NavLink, HashRouter } from 'react-router-dom'
 import { TabBar, } from 'antd-mobile'
-
+import Index from './Home/index'
 import Strict from './Strict/index'
 import Case from './case/index'
 import './Home.less'
@@ -22,6 +22,7 @@ class Home extends React.Component {
           >
             <HashRouter>
               <Switch>
+              <Route path='/home' component={Index}></Route>
                 <Route path='/strict' component={Strict}></Route>
                 <Route path='/case' component={Case}></Route>
                 <Route></Route>
@@ -29,7 +30,7 @@ class Home extends React.Component {
             </HashRouter>
             <ul>
               <li>
-                <NavLink to='/'>服务</NavLink>
+                <NavLink to='/home'>服务</NavLink>
               </li>
               <li>
                 <NavLink to='/strict'>严选</NavLink>

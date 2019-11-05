@@ -35,5 +35,6 @@
     "customize-cra": "^0.8.0",
     "less-loader": "^5.0.0",
     "react-app-rewired": "^2.1.4"
-  }
+  },
+  "proxy" : "https://m.zbj.com"
 }

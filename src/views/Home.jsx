@@ -1,7 +1,7 @@
 import React from "react";
 
 import axios from "axios";
-import { Switch, Route, HashRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { TabBar, Tabs, NavBar, SearchBar } from "antd-mobile";
 import Index from "./Home/index";
 import Strict from "./Strict/index";

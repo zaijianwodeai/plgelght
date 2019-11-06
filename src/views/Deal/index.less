@@ -1,0 +1,129 @@
+.deal{
+    .header{
+        display: flex;
+        height: 43px;
+        background: #fff;
+        .back{
+          color: #333;
+          font-size: 16px;
+          line-height: 43px;
+          margin-left: 5px;
+        }
+        .header-text{
+            width:262px;
+            line-height: 43px;
+            text-align: center;
+            font-size: 17px;
+            color: #333;
+         }
+    }
+    .my-accordion{
+        display: flex;
+        height:42px;
+        font-size: 14px !important;
+        border-bottom:2px solid#ccc;
+        .zonghe{
+            i{
+                display: none;
+            }
+        }
+        .shaixuan{
+            i{
+                display: none;
+            }
+        }
+        .am-accordion-item-active{
+            font-size: 12px;
+            .am-accordion-header{
+                color: #0077FF;
+            }
+        }
+        
+    }
+    .list-content{
+        overflow-y: auto;
+        height: 660px;
+        .list-area{
+            background: #fff;
+            .module-list{
+                .order-item-wrap{
+                    margin:0 15px;
+                    padding: 6px 4px;
+                    border-bottom: 1px solid #d8d8d8;
+                    .order-item-title{
+                        margin-top: 13px;
+                        .title{
+                            display: inline-block;
+                            width: 162px;
+                            overflow:hidden;
+                            text-overflow:ellipsis;
+                            white-space: nowrap;
+                        }
+                        .price{
+                            font-size: 15px;
+                            font-weight: 500;
+                            color: #ff4d00;
+                            margin-right: 5px;
+                        }
+                        .order-item-isTop{
+                            padding: 1px 5px;
+                            margin: 3px;
+                            background: linear-gradient(90deg,#ff912d,#f14c14);
+                            border-radius: 5px;
+                            color: #fff;
+                            font-weight: 400;
+                            font-size: 15pxm;
+                            position: relative;
+                        }
+                    }
+                }
+                .order-item-content{
+                    margin-top: 10px;
+                    margin-bottom:5px;
+                    height: 34px;
+                    font-size: 13px;
+                    color: #666;
+                    line-height: 15px;
+                    .text{
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        -webkit-box-orient: vertical;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                    }
+                }
+                .order-item-footer{
+                    font-size: 13px;
+                    margin-bottom: 10px;
+                    display: flex;
+                    justify-content: space-between;
+                    .state-list{
+                        .order-item-type{
+                            text-align: center;
+                            padding: 2px 10px;
+                            color: #ff6900;
+                            background-color: #ffefe4;
+                            border-radius: 3px;
+                        }
+                        .state{
+                            color: #999;
+                            padding: 2px 4px;
+                            border: 1px solid #ddd;
+                            border-radius: 3px;
+                        }
+                    }
+                    .join-num{
+                        font-size:12px;
+                        color: #999;
+                        em{
+                            color: #ff6900;
+                            margin-right: 2px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+}

@@ -76,7 +76,6 @@ class Home extends React.Component {
             <Route path="/strict" component={Strict}></Route>
             <Route path="/case" component={Case}></Route>
             <Route path="/center" component={Login}></Route>
-            <Route path="/" component={Index}></Route>
           </Switch>
           </div>
         {/* ==============底部分割线======================== */}
@@ -122,7 +121,6 @@ class Home extends React.Component {
               this.setState({
                 url: "center"
               });
-              console.log(this.state.url)
             }}
 
           ></TabBar.Item>

@@ -1,8 +1,8 @@
 import React from "react";
 
 import axios from "axios";
-import { Switch, Route } from "react-router-dom";
 import { TabBar, Tabs, NavBar, SearchBar } from "antd-mobile";
+import { Switch, Route } from "react-router-dom";
 import Index from "./Home/index";
 import Strict from "./Strict/index";
 import Case from "./case/index";
@@ -25,7 +25,7 @@ class Home extends React.Component {
       initialPage={0}
       swipeable={false}
       tabBarActiveTextColor="#ff5f16"
-      onChange={tab => {
+      onChange={(tab) => {
         this.props.history.push({
           pathname: tab.url
         });
@@ -53,7 +53,7 @@ class Home extends React.Component {
     return (
       <div className="page-Home">
         <div className="page-box">
-          <NavBar
+          {this.state.url === 'center' ? null : <NavBar
             mode="light"
             leftContent={
               <i className="iconfont icon-dizhi">
@@ -67,19 +67,18 @@ class Home extends React.Component {
             }
           >
             <SearchBar placeholder="logo设计"></SearchBar>
-          </NavBar>
+          </NavBar>}
           {hots}
 
-          {this.state.url !== "login" ? this.Nav : null}
+          {this.state.url === "center" ? null :this.Nav }
           <Switch>
             <Route path="/home" component={Index}></Route>
             <Route path="/strict" component={Strict}></Route>
             <Route path="/case" component={Case}></Route>
-            <Route path="/login" component={Login}></Route>
+            <Route path="/center" component={Login}></Route>
             <Route path="/" component={Index}></Route>
           </Switch>
-        </div>
-
+          </div>
         {/* ==============底部分割线======================== */}
         <TabBar unselectedTintColor="#999" tintColor="#f60" barTintColor="#fff">
           <TabBar.Item
@@ -115,15 +114,17 @@ class Home extends React.Component {
             title="我的"
             icon={<i className="iconfont icon-wode"></i>}
             selectedIcon={<i className="iconfont icon-wode"></i>}
+            selected={this.state.url === "center"}
             onPress={() => {
               this.props.history.push({
-                pathname: "/login"
+                pathname: "/center"
               });
               this.setState({
-                url: "login"
+                url: "center"
               });
+              console.log(this.state.url)
             }}
-            selected={this.state.url === "login"}
+
           ></TabBar.Item>
         </TabBar>
       </div>
@@ -136,11 +137,11 @@ class Home extends React.Component {
       this.setState({
         hot: res.data.data.list
       });
-    });
+    })
   }
   componentDidMount() {
-    this.hot();
+    this.hot()
   }
 }
 
-export default Home;
+export default Home

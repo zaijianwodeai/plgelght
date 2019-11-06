@@ -62,7 +62,7 @@ class Deal extends React.Component{
                         </span>
                         <span className='state'>{item.categoryName}</span>
                         {item.localAreaName?<span className='state'>{item.localAreaName}</span>:null}
-                        {item.taskStatus==2?<span className='state'>工作中</span>:item.taskStatus==1?
+                        {item.taskStatus===2?<span className='state'>工作中</span>:item.taskStatus===1?
                         <span className='state'>匹配中</span>
                         :<span className='state'>交易成功</span>}
                       </span>
@@ -104,7 +104,7 @@ class Deal extends React.Component{
   }
 
   let aa=document.getElementsByClassName('aa')[0]//预算
-    if(aa.className.indexOf('am-accordion-item-active')!=-1){
+    if(aa.className.indexOf('am-accordion-item-active')!==-1){
       console.log('aa')
       this.setState({
         ss:1,
@@ -125,7 +125,7 @@ class Deal extends React.Component{
   }
 
     let bb=document.getElementsByClassName('bb')[0]//预算
-    if(bb.className.indexOf('am-accordion-item-active')!=-1){
+    if(bb.className.indexOf('am-accordion-item-active')!==-1){
       console.log('bb')
       this.setState({
         ss:1,

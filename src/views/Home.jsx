@@ -20,7 +20,8 @@ class Home extends React.Component {
     { title: "交易", url: "deal" }
   ];
   Nav = (
-    <Tabs
+    <div className='layoutNav'>
+      <Tabs
       tabs={this.tabs}
       initialPage={0}
       swipeable={false}
@@ -32,6 +33,7 @@ class Home extends React.Component {
       }}
     >
     </Tabs>
+    </div>
 
   );
   render() {

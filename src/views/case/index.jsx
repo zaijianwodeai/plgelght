@@ -10,12 +10,24 @@ class Case extends React.Component{
     famousData : [],
     governmentData:[],
     LabelNavigation:[],
-    FavoriteCase : null
+    FavoriteCase : null,
+    tab : false,
+    page:0,
+    loading:false,
+    listTop:false
   }
   render() {
     const tabs = this.state.LabelNavigation.length > 0 ? this.state.LabelNavigation : []
+    const tops = [{title:'精选'},{title:'最热'},{title:'筛选'}]
+
+    let loadingEL = (
+      <div className="loading">
+        <i></i>
+        <span>加载中...</span>
+      </div>
+    )
     return(
-      <div>
+      <div className='content-box' onScroll={this.onScroll}>
         <div className='content'>
           <div className='banner'>
             <WingBlank>
@@ -62,21 +74,39 @@ class Case extends React.Component{
           <div className='tab-list'>
             <div className='tab-bar'></div>
             {/* 猜你喜欢列表导航 */}
-            <div className='tab-box'>
+            <div className={this.state.tab ? 'tab-box-hidde tab-box' : 'tab-box'}>
               <div className='tab-inner'>
                 <div className='list-tab'>
-                  <Tabs tabs={tabs} tabBarActiveTextColor='#ff6900' tabBarUnderlineStyle={{width : '20%', border: '1px solid #ff6900'}}>
+                  <Tabs tabs={tabs} onTabClick={(tab,index) => {
+                    if(index === 0 ){
+                      this.setState({
+                        // 控制精选、最热、筛选
+                        listTop : false
+                      })
+                    }else{
+                      this.setState({
+                        listTop : true
+                      })
+                    }
+                  }} tabBarActiveTextColor='#ff6900' tabBarUnderlineStyle={{width : '20%', border: '1px solid #ff6900'}}>
                     {this.renderContent}
                   </Tabs>
                 </div>
               </div>
             </div>
+            {
+                  this.state.listTop ? <div  className='list-top'>
+                    <Tabs tabs={tops} tabBarUnderlineStyle={{ display : 'none'}} tabBarActiveTextColor='#ff6900' >
+                    {this.renderContent}
+                  </Tabs>
+                  </div>  : ''
+                }
             {/* 列表详情 */}
             <div className='list-box'>
               <div className='load-more'>
                 <div className='case-list'>
                   {
-                    this.state.FavoriteCase ? this.state.FavoriteCase.list.map(item => {
+                    this.state.FavoriteCase ? this.state.FavoriteCase.map(item => {
                       return (
                         <div className='case-list-item' key={item.caseId}>
                           <div className='case-img'>
@@ -114,6 +144,7 @@ class Case extends React.Component{
                     }) : ''
                   }
                 </div>
+                {loadingEL}
               </div>
             </div>
           </div>
@@ -146,22 +177,56 @@ class Case extends React.Component{
       this.setState({
         LabelNavigation : arr
       })
-      console.log(this.state.LabelNavigation)
     })
   }
   getFavoriteCase() {
-    axios.post('/m/shunt/favoriteCase/',{
-      locationCityId: 3510,
-      locationProvinceId: 3492,
-      page: 0,
-      pagesize: 10
-    }).then(response => {
-      let result = response.data
-      this.setState({
-        FavoriteCase : result.data
-      })
-      console.log(this.state.FavoriteCase)
+    this.setState({
+      loading : true
     })
+    setTimeout(() => {
+      axios.post('/m/shunt/favoriteCase/',{
+        locationCityId: 3510,
+        locationProvinceId: 3492,
+        page: this.state.page,
+        pagesize: 10
+      }).then(response => {
+        let result = response.data
+        let newResult = this.state.FavoriteCase ? [...this.state.FavoriteCase] : []
+        newResult = newResult.concat(result.data.list)
+        this.setState({
+          FavoriteCase : newResult,
+          loading : false
+        })
+      })
+    },200)
+
+  }
+  onScroll = e => {
+    let target = e.target
+    let scrollTop = target.scrollTop   //滚动的距离
+    let scrollHeight = target.scrollHeight
+    let clientHeight = target.clientHeight
+
+    if(scrollTop >= 265) {
+      this.setState ({
+        tab : true
+      }
+      )
+    }else{
+      this.setState ({
+        tab : false
+      }
+      )
+    }
+    if(scrollTop + clientHeight >= scrollHeight  && !this.state.loading){
+      let pageNum = this.state.page +1
+      this.setState({
+        page : pageNum
+      })
+      setTimeout(() => {
+          this.getFavoriteCase()
+      },100)
+    }
   }
 
   componentDidMount() {

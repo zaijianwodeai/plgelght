@@ -1,4 +1,11 @@
+*{
+  box-sizing: border-box;
+}
 body{
+  .content-box{
+    overflow-y: auto;
+    height: 523.5px;
+  }
   background: #fff;
   line-height: 1.6;
   .banner{
@@ -89,15 +96,26 @@ body{
       height: 10px;
       background-color: #f6f6f6;
     }
+    .tab-box-hidde{
+      position: fixed;
+      top: 93.5px;
+      left: 15px;
+      z-index: 999;
+    }
     .tab-inner{
+      overflow: hidden;
       height: 45px;
       font-size: 14px;
       .am-tabs-default-bar-tab-active{
         font-weight: 700;
         font-size : 16px
       }
-      .am-tabs-tab-bar-wrap{
-        padding-left: 15px;
+    }
+    .list-top{
+      .am-tabs-default-bar-tab{
+        font-size: 13px;
+        font-weight: 300;
+        background: #f6f6f6;
       }
     }
     .list-box{

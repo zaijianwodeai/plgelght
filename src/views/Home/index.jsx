@@ -15,7 +15,7 @@ class Iendex extends React.Component {
       { url: '//rms.zbj.com/resource/redirect?key=mobile/newwap/2.png/origine/56efcd5c-44b5-4187-9252-03d005c8ed49', id: '4' }
     ]
     return (
-      <div className='page-box'>
+      <div className='page1-box'>
         <WingBlank>
           <Carousel dots={false} infinite={true} autoplay={true} autoplayInterval='3000'>
             {

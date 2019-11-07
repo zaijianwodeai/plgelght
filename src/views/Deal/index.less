@@ -2,7 +2,7 @@
     .header{
         display: flex;
         height: 43px;
-        background: #fff;
+        // background: #fff;
         .back{
           color: #333;
           font-size: 16px;
@@ -17,34 +17,42 @@
             color: #333;
          }
     }
-    .my-accordion{
-        display: flex;
-        height:42px;
-        font-size: 14px !important;
-        border-bottom:2px solid#ccc;
-        .zonghe{
-            i{
-                display: none;
-            }
-        }
-        .shaixuan{
-            i{
-                display: none;
-            }
-        }
-        .am-accordion-item-active{
-            font-size: 12px;
-            .am-accordion-header{
-                color: #0077FF;
-            }
-        }
-        
+    .liubai{
+        height: 10px;
+        width: 100%;
+        background: #f7f7f7;
     }
+    .myNav{
+        
+        display: flex;
+        border-bottom: 1px #ccc solid;
+        padding-bottom:5px;
+        div{
+            flex: 1;
+            text-align: center;
+        }
+        .red{
+            color: #0077FF;
+            i{
+                display: inline-block;
+                position: relative;
+                transform: rotateX(180deg);
+            }
+        }
+        .open{
+            i{
+                display: inline-block;
+                position: relative;
+                transform: rotate(360deg);
+            }
+        }
+    }
+
     .list-content{
         overflow-y: auto;
         height: 660px;
         .list-area{
-            background: #fff;
+            // background: #fff;
             .module-list{
                 .order-item-wrap{
                     margin:0 15px;

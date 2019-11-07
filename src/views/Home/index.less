@@ -1,16 +1,218 @@
 .page1-box {
-  margin:0 10px;
-    .slider{
-      margin-top: 10px;
-    }
-    .slider-slide{
+  margin: 0 10px;
+  .slider {
+    margin-top: 10px;
+  }
+  .slider-slide {
+    position: initial !important;
+  }
+  .am-wingblank {
+    margin: 0 !important;
+  }
+  .slider-list {
+    height: auto !important;
+  }
 
-      position: initial !important;
+  .brand {
+    display: flex;
+    margin-top: 20px;
+    width: 375px;
+    flex-wrap: wrap;
+    .brand-item {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      margin-right: 15px;
+      margin-bottom: 15px;
+      .brand-icon {
+        margin: 0 auto;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        img {
+          width: 40px;
+          height: 40px;
+          margin: 0 auto;
+        }
+      }
+      p {
+        font-size: 12px;
+        color: #555;
+        line-height: 15px;
+      }
     }
-    .am-wingblank{
-      margin: 0 !important;
+  }
+  .topWap-box {
+    margin-bottom: 20px;
+    .title {
+      display: flex;
+      justify-content: space-between;
+
+      h2 {
+        font-weight: 800;
+        font-size: 18px;
+      }
+      p {
+        font-size: 13px;
+        font-weight: 400;
+        color: #555;
+      }
     }
-    .slider-list{
-      height: auto !important;
+
+    .topWap-img {
+      display: flex;
+      margin-top: 10px;
+      width: 350px;
+      overflow: hidden;
+      overflow-x: scroll;
+
+      img {
+        width: 120px;
+        margin-right: 10px;
+      }
     }
+  }
+  .work {
+    display: flex;
+    margin-top: 10px;
+    width: 350px;
+    overflow: hidden;
+    overflow-x: scroll;
+    position: relative;
+    div {
+      img {
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+      }
+      h2 {
+        position: absolute;
+        color: #fff;
+        top: 50px;
+        font-size: 16px;
+        margin-left: 10px;
+        width: 80px;
+        p {
+          font-size: 12px;
+          line-height: 15px;
+        }
+      }
+    }
+  }
+  .love-box {
+    width: 370px;
+
+    .tabs2 {
+      .am-tabs-default-bar-underline {
+        width: 20% !important;
+        transform: translateX(0%);
+      }
+      .am-tabs-default-bar-tab-active {
+        color: #ff5f16;
+      }
+    }
+  }
+  .loveList-box {
+    width: 316px;
+    height: 163px;
+    margin: 20px 0 20px 20px;
+    display: flex;
+    .loveList-left {
+      img {
+        height: 85px;
+        width: 85px;
+      }
+    }
+
+    .loveList-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      margin-left: 20px;
+      h2 {
+        color: #333;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 17px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      p {
+        height: 20px;
+        margin: 5px 0 9px;
+        line-height: 5.06666667vw;
+      }
+      .price-block {
+        height: 18px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: end;
+        -ms-flex-align: end;
+        align-items: flex-end;
+        margin-top: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+      }
+
+      .inner-tag {
+        color: #ff6900;
+        line-height: 2.66666667vw;
+        font-size: 2.4vw;
+        border: 1px solid #ff6900;
+        white-space: nowrap;
+        margin-top: 10px;
+      }
+      .price-block {
+        .service-price {
+          color: #ff6900;
+          font-size: 16px;
+          .unit {
+            line-height: 16px;
+            font-weight: 500;
+            font-size: 2.4vw;
+          }
+        }
+        .font-normal {
+          font-size: 10px;
+          color: #999;
+          margin: 0 0 0 3px;
+        }
+        .font-normal {
+          font-size: 10px;
+          color: #999;
+          margin: 0 0 0 3px;
+        }
+      }
+      .comment-content {
+        width: 100%;
+        background: #f2f2f2;
+        color: #999;
+        font-size: 11px;
+        font-size: 2.93333333vw;
+        line-height: 16px;
+        line-height: 4.26666667vw;
+        padding: 0 5px;
+      }
+      .shop-button {
+        width: 56px;
+        height: 19px;
+        line-height: 19px;
+        font-size: 10px;
+        font-weight: 400;
+        border-radius: 2px;
+        text-align: center;
+        color: #fff;
+        background: linear-gradient(-90deg,#ff6830,#ff9c54);
+      }
+    }
+  }
 }

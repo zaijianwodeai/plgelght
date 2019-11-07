@@ -1,8 +1,8 @@
 import React from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+// import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.less";
 
-import Login from "./login";
+// import Login from "./login";
 
 class Center extends React.Component {
   render() {

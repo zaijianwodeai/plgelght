@@ -1,5 +1,5 @@
 import React from 'react'
-import { WingBlank, Carousel, Tabs, WhiteSpace } from 'antd-mobile'
+import { WingBlank, Carousel, Tabs } from 'antd-mobile'
 
 import axios from 'axios'
 import './index.less'
@@ -166,7 +166,7 @@ class Iendex extends React.PureComponent {
       let tabs = []
       let arr = '猜我喜欢'
       res.data.data.map((item, index) => {
-        tabs.push({ title: item.title })
+        return tabs.push({ title: item.title })
       })
       tabs.unshift({ title: arr })
       this.setState({
@@ -183,12 +183,11 @@ class Iendex extends React.PureComponent {
 
       let loveList = []
       res.data.data.map( (item) => {
-        loveList.push(...item.services)
+       return loveList.push(...item.services)
       })
       this.setState({
         loveList
       })
-      console.log(loveList)
     })
   }
   componentDidMount() {

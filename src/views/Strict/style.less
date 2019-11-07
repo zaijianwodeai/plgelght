@@ -1,8 +1,12 @@
 .page-strict {
+  background: #fafaf9;
+  margin: 0;
   .header {
     height: 94px;
   }
-
+  .aFixed {
+    position: fixed;
+  }
   .slider-list {
     height: auto !important;
     .slider-slide {
@@ -40,6 +44,12 @@
         width: 169px;
       }
     }
+  }
+
+  .am-tabs-tab-bar-wrap {
+    position: sticky;
+    top: 50px;
+    z-index: 99999;
   }
 
   .am-tabs-default-bar-content {

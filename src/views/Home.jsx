@@ -20,19 +20,19 @@ class Home extends React.Component {
     { title: "交易", url: "deal" }
   ];
   Nav = (
-    <Tabs
-      tabs={this.tabs}
-      initialPage={0}
-      swipeable={false}
-      tabBarActiveTextColor="#ff5f16"
-      onChange={(tab) => {
-        this.props.history.push({
-          pathname: tab.url
-        });
-      }}
-    >
-    </Tabs>
-
+    <div className="layoutNav">
+      <Tabs
+        tabs={this.tabs}
+        initialPage={0}
+        swipeable={false}
+        tabBarActiveTextColor="#ff5f16"
+        onChange={tab => {
+          this.props.history.push({
+            pathname: tab.url
+          });
+        }}
+      ></Tabs>
+    </div>
   );
   render() {
     let hots;
@@ -43,8 +43,8 @@ class Home extends React.Component {
           <ul className="hot">
             {this.state.hot.length > 0
               ? this.state.hot.map((item, index) => {
-                return <li key={index}>{item.keyword}</li>;
-              })
+                  return <li key={index}>{item.keyword}</li>;
+                })
               : null}
           </ul>
         </div>
@@ -53,24 +53,26 @@ class Home extends React.Component {
     return (
       <div className="page-Home">
         <div className="page-box">
-          {this.state.url === 'center' ? null : <NavBar
-            mode="light"
-            leftContent={
-              <i className="iconfont icon-dizhi">
-                <p>深圳</p>
-              </i>
-            }
-            rightContent={
-              <i className="iconfont icon-fenlei">
-                <p>分类</p>
-              </i>
-            }
-          >
-            <SearchBar placeholder="logo设计"></SearchBar>
-          </NavBar>}
+          {this.state.url === "center" ? null : (
+            <NavBar
+              mode="light"
+              leftContent={
+                <i className="iconfont icon-dizhi">
+                  <p>深圳</p>
+                </i>
+              }
+              rightContent={
+                <i className="iconfont icon-fenlei">
+                  <p>分类</p>
+                </i>
+              }
+            >
+              <SearchBar placeholder="logo设计"></SearchBar>
+            </NavBar>
+          )}
           {hots}
 
-          {this.state.url === "center" ? null :this.Nav }
+          {this.state.url === "center" ? null : this.Nav}
           <Switch>
             <Route path="/home" component={Index}></Route>
             <Route path="/strict" component={Strict}></Route>
@@ -78,7 +80,7 @@ class Home extends React.Component {
             <Route path="/center" component={Login}></Route>
             <Route path="/" component={Index}></Route>
           </Switch>
-          </div>
+        </div>
         {/* ==============底部分割线======================== */}
         <TabBar unselectedTintColor="#999" tintColor="#f60" barTintColor="#fff">
           <TabBar.Item
@@ -122,9 +124,8 @@ class Home extends React.Component {
               this.setState({
                 url: "center"
               });
-              console.log(this.state.url)
+              console.log(this.state.url);
             }}
-
           ></TabBar.Item>
         </TabBar>
       </div>
@@ -137,11 +138,11 @@ class Home extends React.Component {
       this.setState({
         hot: res.data.data.list
       });
-    })
+    });
   }
   componentDidMount() {
-    this.hot()
+    this.hot();
   }
 }
 
-export default Home
+export default Home;

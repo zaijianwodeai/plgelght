@@ -8,7 +8,20 @@
     height: 500px;
     flex: 1;
     overflow: hidden;
-    overflow-y: auto;;
+    overflow-y: auto;
+
+    .am-navbar-light {
+      position: sticky;
+      top: 0px;
+      z-index: 99999;
+    }
+    .layoutNav {
+      .am-tabs-default-bar-underline {
+        width: 7% !important;
+        transform: translateX(120%);
+        border-color: #ff5f16;
+      }
+    }
   }
   .am-navbar-left {
     padding-left: 0px;
@@ -20,11 +33,7 @@
     font-size: 16px;
     font-weight: 600;
   }
-  .am-tabs-default-bar-underline {
-    width: 7% !important;
-    transform: translateX(120%);
-    border-color: #ff5f16;
-  }
+
   .am-navbar {
     height: 50px;
 
@@ -35,7 +44,7 @@
         font-size: 12px;
       }
     }
-    .icon-fenlei{
+    .icon-fenlei {
       color: #000;
       font-size: 20px;
       p {
@@ -47,11 +56,11 @@
       width: 265px;
     }
   }
-  .hot-box{
+  .hot-box {
     height: 5px;
     margin: 20px 0;
     display: flex;
-    span{
+    span {
       margin-left: 13px;
       color: #666;
       font-size: 12px;
@@ -85,8 +94,8 @@
   .am-tabs-pane-wrap {
     overflow: visible !important;
   }
-    .am-tab-bar {
-      height: 50px;
-      overflow:visible;
-    }
+  .am-tab-bar {
+    height: 50px;
+    overflow: visible;
+  }
 }

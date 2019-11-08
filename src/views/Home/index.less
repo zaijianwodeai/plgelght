@@ -101,7 +101,9 @@
   }
   .love-box {
     width: 370px;
-
+    position: sticky;
+    top: 50px;
+    z-index: 99999;
     .tabs2 {
       .am-tabs-default-bar-underline {
         width: 20% !important;
@@ -112,10 +114,16 @@
       }
     }
   }
+  .load {
+    min-height: 1000px;
+    color: #ccc;
+    margin: 0 auto;
+    text-align: center;
+  }
   .loveList-box {
     width: 316px;
     height: 163px;
-    margin: 20px 0 20px 20px;
+    margin: 20px 0 0px 20px;
     display: flex;
     .loveList-left {
       img {
@@ -123,12 +131,10 @@
         width: 85px;
       }
     }
-
     .loveList-right {
       flex: 1;
       display: flex;
       flex-direction: column;
-
       margin-left: 20px;
       h2 {
         color: #333;
@@ -139,6 +145,28 @@
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
+      }
+
+      .shop-service-tags {
+        height: 5.06666667vw;
+        line-height: 5.06666667vw;
+        overflow: hidden;
+        margin: 5px 0 9px;
+
+        .tag-item {
+          display: inline-block;
+          line-height: 2.66666667vw;
+          margin-right: .8vw;
+          padding: 0 2px;
+          color: #ff6900;
+          border: 1px solid #ffcaa5;
+          border-radius: 2px;
+          font-size: 2.4vw;
+          flex-shrink: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
       p {
         height: 20px;
@@ -201,6 +229,11 @@
         line-height: 16px;
         line-height: 4.26666667vw;
         padding: 0 5px;
+        word-break: break-all;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
       .shop-button {
         width: 56px;

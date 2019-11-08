@@ -14,19 +14,23 @@ class Home extends React.Component {
     hot: ""
   };
   tabs = [
-    { title: "服务", url: "home" },
-    { title: "严选", url: "strict" },
-    { title: "案例", url: "case" },
-    { title: "交易", url: "deal" }
+    { title: "服务", url: "home",index:0},
+    { title: "严选", url: "strict",index:1 },
+    { title: "案例", url: "case",index:2 },
+    { title: "交易", url: "deal",index:3 }
   ];
   Nav = (
     <div className='layoutNav'>
       <Tabs
       tabs={this.tabs}
-      initialPage={0}
+       initialPage={ window.sessionStorage.getItem('index') ? Number(window.sessionStorage.getItem('index')) :0 }
       swipeable={false}
       tabBarActiveTextColor="#ff5f16"
-      onChange={(tab) => {
+      onChange={(tab,index) => {
+
+        if(index !== 3){
+          window.sessionStorage.setItem('index',index)
+        }
         this.props.history.push({
           pathname: tab.url
         });

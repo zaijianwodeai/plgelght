@@ -62,7 +62,29 @@ class Iendex extends React.PureComponent {
     )
     let myLove = (
       <div className='tabs2'>
-        <Tabs tabs={this.state.myLove}></Tabs>
+        <Tabs
+         tabs={this.state.myLove}
+         onChange={ () => {
+           this.setState({
+            loveList : []
+           })
+           axios.post('/m/service/search/v2',{
+            page: 0,
+            pagesize: 10,
+            sort: 1,
+            minOpenShopDays: 0,
+            userType: 0,
+            platform: 0,
+            locationCityId: 3510,
+            locationProvinceId: 3492,
+            guidCategoryIds: 1213
+           }).then ( res => {
+             this.setState({
+              loveList : res.data.data.list
+             })
+           })
+         }}
+         ></Tabs>
       </div>
 
     )
@@ -75,7 +97,15 @@ class Iendex extends React.PureComponent {
             </div>
             <div className='loveList-right'>
               <h2>{item.highlightTitle}</h2>
-              <i className='unit'>{item.salePoint[0]}{item.salePoint[2]}</i>
+              <p className='shop-service-tags'>
+                <span className='tag-item'>
+                  <i>{item.salePoint[0]}{item.salePoint[2]}</i>
+                </span>
+                <span className='tag-item'>
+                  <i>{item.salePoint[1]}</i>
+                </span>
+              </p>
+
               <div className='price-block'>
                 <span className='service-price'>
                   <i className='unit'>￥</i>
@@ -95,6 +125,10 @@ class Iendex extends React.PureComponent {
           </div>
         )
       })
+    )
+
+    let load = (
+        <div className='load'>加载中...</div>
     )
     return (
       <div className='page1-box'>
@@ -137,7 +171,7 @@ class Iendex extends React.PureComponent {
           {this.state.myLove.length > 0 ? myLove : null}
         </div>
         <div >
-          {this.state.loveList.length > 0 ? loveList : null}
+          {this.state.loveList.length > 0 ? loveList : load}
         </div>
       </div>
     )

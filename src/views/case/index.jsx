@@ -5,27 +5,38 @@ import { NavLink } from 'react-router-dom'
 import './index.less'
 
 class Case extends React.Component{
+
   state = {
-    bannerList : null,
-    famousData : [],
-    governmentData:[],
-    LabelNavigation:[],
-    FavoriteCase : null,
-    tab : false,
-    page:0,
+    bannerList : null,   //轮播图
+    famousData : [],   //精彩案例
+    governmentData:[],  //精彩案例2
+    LabelNavigation:[], //导航图
+    FavoriteCase : null, //导航详情
+    tab : false,  //
+    page:0,  //ajax 发请求页数
+    total:1, // 总页数
     loading:false,
-    listTop:false
+    listTop:false, //控制精彩、筛选
+    CategoryIds : 1,
+    sort : 1
   }
   render() {
     const tabs = this.state.LabelNavigation.length > 0 ? this.state.LabelNavigation : []
     const tops = [{title:'精选'},{title:'最热'},{title:'筛选'}]
 
     let loadingEL = (
-      <div className="loading">
+      <div style={{textAlign : 'center'}} className="loading">
         <i></i>
         <span>加载中...</span>
       </div>
     )
+    if (this.state.page=== this.state.total-1 && !this.state.loading) {
+      loadingEL = (
+        <div style={{textAlign : 'center'}} className="loading">
+          <span>我也是有底线的...</span>
+        </div>
+      )
+    }
     return(
       <div className='content-box' onScroll={this.onScroll}>
         <div className='content'>
@@ -82,11 +93,21 @@ class Case extends React.Component{
                     if(index === 0 ){
                       this.setState({
                         // 控制精选、最热、筛选
-                        listTop : false
+                        listTop : false,
+                        FavoriteCase : null,
+                        page : 0
+                      })
+                      setTimeout(() => {
+                        this.getFavoriteCase()
                       })
                     }else{
                       this.setState({
-                        listTop : true
+                        listTop : true,
+                        FavoriteCase : null,
+                        CategoryIds: tab.categoryId
+                      })
+                      setTimeout(() => {
+                        this.getOtherFavoriteCase()
                       })
                     }
                   }} tabBarActiveTextColor='#ff6900' tabBarUnderlineStyle={{width : '20%', border: '1px solid #ff6900'}}>
@@ -97,7 +118,24 @@ class Case extends React.Component{
             </div>
             {
                   this.state.listTop ? <div  className='list-top'>
-                    <Tabs tabs={tops} tabBarUnderlineStyle={{ display : 'none'}} tabBarActiveTextColor='#ff6900' >
+                    <Tabs tabs={tops} onTabClick={(tab,index) => {
+                      if(index === 0){
+                        this.setState({
+                          sort : 1
+                        })
+                        setTimeout(() => {
+                          this.getOtherFavoriteCase()
+                        })
+                      }
+                      if(index === 1){
+                        this.setState({
+                          sort : 2
+                        })
+                        setTimeout(() => {
+                          this.getOtherFavoriteCase()
+                        })
+                      }
+                    }} tabBarUnderlineStyle={{ display : 'none'}} tabBarActiveTextColor='#ff6900' >
                     {this.renderContent}
                   </Tabs>
                   </div>  : ''
@@ -107,9 +145,9 @@ class Case extends React.Component{
               <div className='load-more'>
                 <div className='case-list'>
                   {
-                    this.state.FavoriteCase ? this.state.FavoriteCase.map(item => {
+                    this.state.FavoriteCase ? this.state.FavoriteCase.map((item,index) => {
                       return (
-                        <div className='case-list-item' key={item.caseId}>
+                        <div className='case-list-item' key={index}>
                           <div className='case-img'>
                             <img style={{width : '100%',height: '100%'}} src={item.coverFileUrl} alt=""/>
                           </div>
@@ -192,14 +230,45 @@ class Case extends React.Component{
         pagesize: 10
       }).then(response => {
         let result = response.data
+        console.log(result)
         let newResult = this.state.FavoriteCase ? [...this.state.FavoriteCase] : []
         newResult = newResult.concat(result.data.list)
         this.setState({
           FavoriteCase : newResult,
-          loading : false
+          loading : false,
+          total : result.data.totalPage
         })
       })
     },200)
+
+  }
+  getOtherFavoriteCase () {
+    this.setState({
+      loading : true
+    })
+    setTimeout(() => {
+      axios.post('/m/case/search/v3',{
+        page: 0,
+        pagesize: 10,
+        'guidCategoryIds[0]': this.state.CategoryIds,
+        sort: this.state.sort,
+        locationCityId: 3510,
+        locationProvinceId: 3492,
+        userType: 0,
+        platform: 0,
+        minOpenShopDays: 0
+      }).then(response => {
+          let result = response.data
+          let newResult = this.state.FavoriteCase ? [...this.state.FavoriteCase] : []
+          newResult = newResult.concat(result.data.list)
+          let new2Result = newResult.slice(3)
+          this.setState({
+            FavoriteCase : new2Result,
+            loading : false,
+            total : result.data.totalPage
+          })
+      })
+    })
 
   }
   onScroll = e => {
@@ -219,7 +288,7 @@ class Case extends React.Component{
       }
       )
     }
-    if(scrollTop + clientHeight >= scrollHeight  && !this.state.loading){
+    if(scrollTop + clientHeight >= scrollHeight  && !this.state.loading &&this.state.page < this.state.total-1){
       let pageNum = this.state.page +1
       this.setState({
         page : pageNum
